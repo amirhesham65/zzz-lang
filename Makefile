@@ -10,6 +10,9 @@ fmt:
 vet: fmt
 	go vet ./...
 
+test: 
+	go test ./...
+
 build: vet
 	go build -o $(BIN)
 
