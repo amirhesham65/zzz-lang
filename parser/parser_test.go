@@ -14,10 +14,10 @@ func TestLetStatements(t *testing.T) {
 		expectedIdentifier string
 		expectedValue      interface{}
 	}{
-		{"let y = true;", "y", true},
-		{"let x = 5;", "x", 5},
+		{"lit y = true;", "y", true},
+		{"lit x = 5;", "x", 5},
 
-		{"let foobar = y;", "foobar", "y"},
+		{"lit foobar = y;", "foobar", "y"},
 	}
 
 	for _, tt := range tests {
@@ -365,7 +365,7 @@ func TestOperatorPrecedenceParsing(t *testing.T) {
 }
 
 func TestIfExpression(t *testing.T) {
-	input := `if (x < y) { x }`
+	input := `fr (x < y) { x }`
 
 	l := lexer.New(input)
 	p := New(l)
@@ -414,7 +414,7 @@ func TestIfExpression(t *testing.T) {
 }
 
 func TestIfElseExpression(t *testing.T) {
-	input := `if (x < y) { x } else { y }`
+	input := `fr (x < y) { x } else { y }`
 
 	l := lexer.New(input)
 	p := New(l)
@@ -473,7 +473,7 @@ func TestIfElseExpression(t *testing.T) {
 }
 
 func TestFunctionLiteralParsing(t *testing.T) {
-	input := `fn(x, y) { x + y; }`
+	input := `fun(x, y) { x + y; }`
 
 	l := lexer.New(input)
 	p := New(l)
@@ -524,9 +524,9 @@ func TestFunctionParameterParsing(t *testing.T) {
 		input          string
 		expectedParams []string
 	}{
-		{input: "fn() {};", expectedParams: []string{}},
-		{input: "fn(x) {};", expectedParams: []string{"x"}},
-		{input: "fn(x, y, z) {};", expectedParams: []string{"x", "y", "z"}},
+		{input: "fun() {};", expectedParams: []string{}},
+		{input: "fun(x) {};", expectedParams: []string{"x"}},
+		{input: "fun(x, y, z) {};", expectedParams: []string{"x", "y", "z"}},
 	}
 
 	for _, tt := range tests {
@@ -679,8 +679,8 @@ func TestBooleanExpression(t *testing.T) {
 }
 
 func testLetStatement(t *testing.T, s ast.Statement, name string) bool {
-	if s.TokenLiteral() != "let" {
-		t.Errorf("s.TokenLiteral not 'let'. got=%q", s.TokenLiteral())
+	if s.TokenLiteral() != "lit" {
+		t.Errorf("s.TokenLiteral not 'lit'. got=%q", s.TokenLiteral())
 		return false
 	}
 

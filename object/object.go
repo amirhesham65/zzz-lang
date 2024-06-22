@@ -72,7 +72,7 @@ func (f *Function) Inspect() string {
 		params = append(params, p.String())
 	}
 
-	out.WriteString("fn")
+	out.WriteString("fun")
 	out.WriteString("(")
 	out.WriteString(strings.Join(params, ", "))
 	out.WriteString(") {\n")

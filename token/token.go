@@ -58,9 +58,9 @@ const (
 
 // keywords maps string literals to their corresponding TokenType.
 var keywords = map[string]TokenType{
-	"fn":     FUNCTION,
-	"let":    LET,
-	"if":     IF,
+	"fun":    FUNCTION,
+	"lit":    LET,
+	"fr":     IF,
 	"else":   ELSE,
 	"return": RETURN,
 	"true":   TRUE,
