@@ -1,4 +1,4 @@
-BIN := bin/hera-lang
+BIN := bin/zzz-lang
 
 .DEFAULT_GOAL := run
 

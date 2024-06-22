@@ -3,9 +3,9 @@ package evaluator
 import (
 	"testing"
 
-	"github.com/amirhesham65/hera-lang/lexer"
-	"github.com/amirhesham65/hera-lang/object"
-	"github.com/amirhesham65/hera-lang/parser"
+	"github.com/amirhesham65/zzz-lang/lexer"
+	"github.com/amirhesham65/zzz-lang/object"
+	"github.com/amirhesham65/zzz-lang/parser"
 )
 
 func TestEvalIntegerExpression(t *testing.T) {

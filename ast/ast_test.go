@@ -3,7 +3,7 @@ package ast
 import (
 	"testing"
 
-	"github.com/amirhesham65/hera-lang/token"
+	"github.com/amirhesham65/zzz-lang/token"
 )
 
 func TestString(t *testing.T) {

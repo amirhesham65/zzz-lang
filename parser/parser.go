@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"strconv"
 
-	"github.com/amirhesham65/hera-lang/ast"
-	"github.com/amirhesham65/hera-lang/lexer"
-	"github.com/amirhesham65/hera-lang/token"
+	"github.com/amirhesham65/zzz-lang/ast"
+	"github.com/amirhesham65/zzz-lang/lexer"
+	"github.com/amirhesham65/zzz-lang/token"
 )
 
 // Parser holds the state of the parser including the lexer, current and peek tokens, and maps of parsing functions.

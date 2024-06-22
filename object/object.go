@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/amirhesham65/hera-lang/ast"
+	"github.com/amirhesham65/zzz-lang/ast"
 )
 
 type ObjectType string

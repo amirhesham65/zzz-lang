@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"strings"
 
-	"github.com/amirhesham65/hera-lang/token"
+	"github.com/amirhesham65/zzz-lang/token"
 )
 
 type Node interface {
