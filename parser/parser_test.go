@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/amirhesham65/hera-lang/ast"
-	"github.com/amirhesham65/hera-lang/lexer"
+	"github.com/amirhesham65/zzz-lang/ast"
+	"github.com/amirhesham65/zzz-lang/lexer"
 )
 
 func TestLetStatements(t *testing.T) {
@@ -14,10 +14,10 @@ func TestLetStatements(t *testing.T) {
 		expectedIdentifier string
 		expectedValue      interface{}
 	}{
-		{"let y = true;", "y", true},
-		{"let x = 5;", "x", 5},
+		{"lit y = yea;", "y", true},
+		{"lit x = 5;", "x", 5},
 
-		{"let foobar = y;", "foobar", "y"},
+		{"lit foobar = y;", "foobar", "y"},
 	}
 
 	for _, tt := range tests {
@@ -55,7 +55,7 @@ func TestReturnStatements(t *testing.T) {
 		expectedValue interface{}
 	}{
 		{"return 5;", 5},
-		{"return true;", true},
+		{"return yea;", true},
 		{"return foobar;", "foobar"},
 	}
 
@@ -157,8 +157,8 @@ func TestParsingPrefixExpressions(t *testing.T) {
 		{"-15;", "-", 15},
 		{"!foobar;", "!", "foobar"},
 		{"-foobar;", "-", "foobar"},
-		{"!true;", "!", true},
-		{"!false;", "!", false},
+		{"!yea;", "!", true},
+		{"!nah;", "!", false},
 	}
 
 	for _, tt := range prefixTests {
@@ -215,9 +215,9 @@ func TestParsingInfixExpressions(t *testing.T) {
 		{"foobar < barfoo;", "foobar", "<", "barfoo"},
 		{"foobar == barfoo;", "foobar", "==", "barfoo"},
 		{"foobar != barfoo;", "foobar", "!=", "barfoo"},
-		{"true == true", true, "==", true},
-		{"true != false", true, "!=", false},
-		{"false == false", false, "==", false},
+		{"yea == yea", true, "==", true},
+		{"yea != nah", true, "!=", false},
+		{"nah == nah", false, "==", false},
 	}
 
 	for _, tt := range infixTests {
@@ -298,20 +298,20 @@ func TestOperatorPrecedenceParsing(t *testing.T) {
 			"((3 + (4 * 5)) == ((3 * 1) + (4 * 5)))",
 		},
 		{
-			"true",
-			"true",
+			"yea",
+			"yea",
 		},
 		{
-			"false",
-			"false",
+			"nah",
+			"nah",
 		},
 		{
-			"3 > 5 == false",
-			"((3 > 5) == false)",
+			"3 > 5 == nah",
+			"((3 > 5) == nah)",
 		},
 		{
-			"3 < 5 == true",
-			"((3 < 5) == true)",
+			"3 < 5 == yea",
+			"((3 < 5) == yea)",
 		},
 		{
 			"1 + (2 + 3) + 4",
@@ -334,8 +334,8 @@ func TestOperatorPrecedenceParsing(t *testing.T) {
 			"(-(5 + 5))",
 		},
 		{
-			"!(true == true)",
-			"(!(true == true))",
+			"!(yea == yea)",
+			"(!(yea == yea))",
 		},
 		{
 			"a + add(b * c) + d",
@@ -365,7 +365,7 @@ func TestOperatorPrecedenceParsing(t *testing.T) {
 }
 
 func TestIfExpression(t *testing.T) {
-	input := `if (x < y) { x }`
+	input := `fr (x < y) { x }`
 
 	l := lexer.New(input)
 	p := New(l)
@@ -414,7 +414,7 @@ func TestIfExpression(t *testing.T) {
 }
 
 func TestIfElseExpression(t *testing.T) {
-	input := `if (x < y) { x } else { y }`
+	input := `fr (x < y) { x } lowkey { y }`
 
 	l := lexer.New(input)
 	p := New(l)
@@ -473,7 +473,7 @@ func TestIfElseExpression(t *testing.T) {
 }
 
 func TestFunctionLiteralParsing(t *testing.T) {
-	input := `fn(x, y) { x + y; }`
+	input := `fun(x, y) { x + y; }`
 
 	l := lexer.New(input)
 	p := New(l)
@@ -524,9 +524,9 @@ func TestFunctionParameterParsing(t *testing.T) {
 		input          string
 		expectedParams []string
 	}{
-		{input: "fn() {};", expectedParams: []string{}},
-		{input: "fn(x) {};", expectedParams: []string{"x"}},
-		{input: "fn(x, y, z) {};", expectedParams: []string{"x", "y", "z"}},
+		{input: "fun() {};", expectedParams: []string{}},
+		{input: "fun(x) {};", expectedParams: []string{"x"}},
+		{input: "fun(x, y, z) {};", expectedParams: []string{"x", "y", "z"}},
 	}
 
 	for _, tt := range tests {
@@ -646,8 +646,8 @@ func TestBooleanExpression(t *testing.T) {
 		input           string
 		expectedBoolean bool
 	}{
-		{"true;", true},
-		{"false;", false},
+		{"yea;", true},
+		{"nah;", false},
 	}
 
 	for _, tt := range tests {
@@ -679,8 +679,8 @@ func TestBooleanExpression(t *testing.T) {
 }
 
 func testLetStatement(t *testing.T, s ast.Statement, name string) bool {
-	if s.TokenLiteral() != "let" {
-		t.Errorf("s.TokenLiteral not 'let'. got=%q", s.TokenLiteral())
+	if s.TokenLiteral() != "lit" {
+		t.Errorf("s.TokenLiteral not 'lit'. got=%q", s.TokenLiteral())
 		return false
 	}
 
@@ -801,13 +801,21 @@ func testBooleanLiteral(t *testing.T, exp ast.Expression, value bool) bool {
 		return false
 	}
 
-	if bo.TokenLiteral() != fmt.Sprintf("%t", value) {
+	if bo.TokenLiteral() != boolSlangConverter(value) {
 		t.Errorf("bo.TokenLiteral not %t. got=%s",
 			value, bo.TokenLiteral())
 		return false
 	}
 
 	return true
+}
+
+func boolSlangConverter(val bool) string {
+	if val == true {
+		return "yea"
+	} else {
+		return "nah"
+	}
 }
 
 func checkParserErrors(t *testing.T, p *Parser) {

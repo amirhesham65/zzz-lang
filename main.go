@@ -5,7 +5,7 @@ import (
 	"os"
 	"os/user"
 
-	"github.com/amirhesham65/hera-lang/repl"
+	"github.com/amirhesham65/zzz-lang/repl"
 )
 
 func main() {

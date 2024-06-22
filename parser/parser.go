@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"strconv"
 
-	"github.com/amirhesham65/hera-lang/ast"
-	"github.com/amirhesham65/hera-lang/lexer"
-	"github.com/amirhesham65/hera-lang/token"
+	"github.com/amirhesham65/zzz-lang/ast"
+	"github.com/amirhesham65/zzz-lang/lexer"
+	"github.com/amirhesham65/zzz-lang/token"
 )
 
 // Parser holds the state of the parser including the lexer, current and peek tokens, and maps of parsing functions.
@@ -53,7 +53,7 @@ func New(l *lexer.Lexer) *Parser {
 	p.registerInfix(token.NOT_EQ, p.parseInfixExpression)
 	p.registerInfix(token.LT, p.parseInfixExpression)
 	p.registerInfix(token.GT, p.parseInfixExpression)
-	p.registerInfix(token.LPAREN, p.parseCallExpression) // fn(x, y)
+	p.registerInfix(token.LPAREN, p.parseCallExpression) // fun(x, y)
 
 	return p
 }

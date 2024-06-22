@@ -6,10 +6,10 @@ import (
 	"io"
 	"os"
 
-	"github.com/amirhesham65/hera-lang/evaluator"
-	"github.com/amirhesham65/hera-lang/lexer"
-	"github.com/amirhesham65/hera-lang/object"
-	"github.com/amirhesham65/hera-lang/parser"
+	"github.com/amirhesham65/zzz-lang/evaluator"
+	"github.com/amirhesham65/zzz-lang/lexer"
+	"github.com/amirhesham65/zzz-lang/object"
+	"github.com/amirhesham65/zzz-lang/parser"
 )
 
 func Start(userName string, in io.Reader, out io.Writer) {

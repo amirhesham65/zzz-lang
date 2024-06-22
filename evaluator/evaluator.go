@@ -3,8 +3,8 @@ package evaluator
 import (
 	"fmt"
 
-	"github.com/amirhesham65/hera-lang/ast"
-	"github.com/amirhesham65/hera-lang/object"
+	"github.com/amirhesham65/zzz-lang/ast"
+	"github.com/amirhesham65/zzz-lang/object"
 )
 
 var (

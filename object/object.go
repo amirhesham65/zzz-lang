@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/amirhesham65/hera-lang/ast"
+	"github.com/amirhesham65/zzz-lang/ast"
 )
 
 type ObjectType string
@@ -36,7 +36,13 @@ type Boolean struct {
 }
 
 func (b *Boolean) Type() ObjectType { return BOOLEAN_OBJ }
-func (b *Boolean) Inspect() string  { return fmt.Sprintf("%t", b.Value) }
+func (b *Boolean) Inspect() string {
+	if b.Value {
+		return "yea"
+	} else {
+		return "nah"
+	}
+}
 
 type Null struct{}
 
@@ -72,7 +78,7 @@ func (f *Function) Inspect() string {
 		params = append(params, p.String())
 	}
 
-	out.WriteString("fn")
+	out.WriteString("fun")
 	out.WriteString("(")
 	out.WriteString(strings.Join(params, ", "))
 	out.WriteString(") {\n")

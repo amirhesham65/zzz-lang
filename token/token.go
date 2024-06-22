@@ -58,13 +58,13 @@ const (
 
 // keywords maps string literals to their corresponding TokenType.
 var keywords = map[string]TokenType{
-	"fn":     FUNCTION,
-	"let":    LET,
-	"if":     IF,
-	"else":   ELSE,
+	"fun":    FUNCTION,
+	"lit":    LET,
+	"fr":     IF,
+	"lowkey": ELSE,
 	"return": RETURN,
-	"true":   TRUE,
-	"false":  FALSE,
+	"yea":    TRUE,
+	"nah":    FALSE,
 }
 
 // LookUpIndent returns the TokenType for a given identifier.

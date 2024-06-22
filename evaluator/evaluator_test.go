@@ -3,9 +3,9 @@ package evaluator
 import (
 	"testing"
 
-	"github.com/amirhesham65/hera-lang/lexer"
-	"github.com/amirhesham65/hera-lang/object"
-	"github.com/amirhesham65/hera-lang/parser"
+	"github.com/amirhesham65/zzz-lang/lexer"
+	"github.com/amirhesham65/zzz-lang/object"
+	"github.com/amirhesham65/zzz-lang/parser"
 )
 
 func TestEvalIntegerExpression(t *testing.T) {
@@ -41,13 +41,13 @@ func TestEvalBooleanExpressions(t *testing.T) {
 		input    string
 		expected bool
 	}{
-		{"true", true},
-		{"false", false},
-		{"!true", false},
-		{"!false", true},
+		{"yea", true},
+		{"nah", false},
+		{"!yea", false},
+		{"!nah", true},
 		{"!5", false},
-		{"!!true", true},
-		{"!!false", false},
+		{"!!yea", true},
+		{"!!nah", false},
 		{"!!5", true},
 		{"1 < 2", true},
 		{"1 > 2", false},
@@ -57,15 +57,15 @@ func TestEvalBooleanExpressions(t *testing.T) {
 		{"1 != 1", false},
 		{"1 == 2", false},
 		{"1 != 2", true},
-		{"true == true", true},
-		{"false == false", true},
-		{"true == false", false},
-		{"true != false", true},
-		{"false != true", true},
-		{"(1 < 2) == true", true},
-		{"(1 < 2) == false", false},
-		{"(1 > 2) == true", false},
-		{"(1 < 2) == false", false},
+		{"yea == yea", true},
+		{"nah == nah", true},
+		{"yea == nah", false},
+		{"yea != nah", true},
+		{"nah != yea", true},
+		{"(1 < 2) == yea", true},
+		{"(1 < 2) == nah", false},
+		{"(1 > 2) == yea", false},
+		{"(1 < 2) == nah", false},
 	}
 
 	for _, tt := range tests {
@@ -79,13 +79,13 @@ func TestIfElseExpressions(t *testing.T) {
 		input    string
 		expected any
 	}{
-		{"if (true) { 10 }", 10},
-		{"if (false) { 10 }", nil},
-		{"if (1) { 10 }", 10},
-		{"if (1 < 2) { 10 }", 10},
-		{"if (1 > 2) { 10 }", nil},
-		{"if (1 > 2) { 10 } else { 20 }", 20},
-		{"if (1 < 2) { 10 } else { 20 }", 10},
+		{"fr (yea) { 10 }", 10},
+		{"fr (nah) { 10 }", nil},
+		{"fr (1) { 10 }", 10},
+		{"fr (1 < 2) { 10 }", 10},
+		{"fr (1 > 2) { 10 }", nil},
+		{"fr (1 > 2) { 10 } lowkey { 20 }", 20},
+		{"fr (1 < 2) { 10 } lowkey { 20 }", 10},
 	}
 
 	for _, tt := range tests {
@@ -110,8 +110,8 @@ func TestReturnStatements(t *testing.T) {
 		{"9; return 2 * 5; 9;", 10},
 		{
 			`
-			if(10 > 1) {
-				if (10 > 1) {
+			fr(10 > 1) {
+				fr (10 > 1) {
 					return 10;
 				}
 				return 1;
@@ -120,8 +120,8 @@ func TestReturnStatements(t *testing.T) {
 		},
 		{
 			`
-			if (10 > 1) {
-			if (10 > 1) {
+			fr (10 > 1) {
+			fr (10 > 1) {
 				return 10;
 			}
 
@@ -131,7 +131,7 @@ func TestReturnStatements(t *testing.T) {
 		},
 		{
 			`
-			let f = fn(x) {
+			lit f = fun(x) {
 			return x;
 			x + 10;
 			};
@@ -139,8 +139,8 @@ func TestReturnStatements(t *testing.T) {
 		},
 		{
 			`
-			let f = fn(x) {
-			let result = x + 10;
+			lit f = fun(x) {
+			lit result = x + 10;
 			return result;
 			return 10;
 			};
@@ -155,10 +155,10 @@ func TestReturnStatements(t *testing.T) {
 
 func TestClosures(t *testing.T) {
 	input := `
-   let newAdder = fn(x) {
-     fn(y) { x + y };
+   lit newAdder = fun(x) {
+     fun(y) { x + y };
 };
-   let addTwo = newAdder(2);
+   lit addTwo = newAdder(2);
    addTwo(2);`
 	testIntegerObject(t, testEval(input), 4)
 }
@@ -168,10 +168,10 @@ func TestLetStatements(t *testing.T) {
 		input    string
 		expected int64
 	}{
-		{"let a = 5; a;", 5},
-		{"let a = 5 * 5; a;", 25},
-		{"let a = 5; let b = a; b;", 5},
-		{"let a = 5; let b = a; let c = a + b + 5; c;", 15},
+		{"lit a = 5; a;", 5},
+		{"lit a = 5 * 5; a;", 25},
+		{"lit a = 5; lit b = a; b;", 5},
+		{"lit a = 5; lit b = a; lit c = a + b + 5; c;", 15},
 	}
 	for _, tt := range tests {
 		testIntegerObject(t, testEval(tt.input), tt.expected)
@@ -184,33 +184,33 @@ func TestErrorHandling(t *testing.T) {
 		expectedMessage string
 	}{
 		{
-			"5 + true;",
+			"5 + yea;",
 			"type mismatch: INTEGER + BOOLEAN",
 		},
 		{
-			"5 + true; 5;",
+			"5 + yea; 5;",
 			"type mismatch: INTEGER + BOOLEAN",
 		},
 		{
-			"-true",
+			"-yea",
 			"unknown operator: -BOOLEAN",
 		},
 		{
-			"true + false;",
+			"yea + nah;",
 			"unknown operator: BOOLEAN + BOOLEAN",
 		}, {
-			"5; true + false; 5",
+			"5; yea + nah; 5",
 			"unknown operator: BOOLEAN + BOOLEAN",
 		},
 		{
-			"if (10 > 1) { true + false; }",
+			"fr (10 > 1) { yea + nah; }",
 			"unknown operator: BOOLEAN + BOOLEAN",
 		},
 		{
 			`
-			if (10 > 1) {
-				if (10 > 1) {
-				  return true + false;
+			fr (10 > 1) {
+				fr (10 > 1) {
+				  return yea + nah;
 				}
 				return 1; 
 			}
@@ -261,7 +261,7 @@ func testIntegerObject(t *testing.T, obj object.Object, expected int64) bool {
 }
 
 func TestFunctionObject(t *testing.T) {
-	input := "fn(x) { x + 2; };"
+	input := "fun(x) { x + 2; };"
 
 	evaluated := testEval(input)
 	fn, ok := evaluated.(*object.Function)
@@ -290,12 +290,12 @@ func TestFunctionApplication(t *testing.T) {
 		input    string
 		expected int64
 	}{
-		{"let identity = fn(x) { x; }; identity(5);", 5},
-		{"let identity = fn(x) { return x; }; identity(5);", 5},
-		{"let double = fn(x) { x * 2; }; double(5);", 10},
-		{"let add = fn(x, y) { x + y; }; add(5, 5);", 10},
-		{"let add = fn(x, y) { x + y; }; add(5 + 5, add(5, 5));", 20},
-		{"fn(x) { x; }(5)", 5},
+		{"lit identity = fun(x) { x; }; identity(5);", 5},
+		{"lit identity = fun(x) { return x; }; identity(5);", 5},
+		{"lit double = fun(x) { x * 2; }; double(5);", 10},
+		{"lit add = fun(x, y) { x + y; }; add(5, 5);", 10},
+		{"lit add = fun(x, y) { x + y; }; add(5 + 5, add(5, 5));", 20},
+		{"fun(x) { x; }(5)", 5},
 	}
 
 	for _, tt := range tests {

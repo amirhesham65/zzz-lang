@@ -2,7 +2,7 @@
 package lexer
 
 import (
-	"github.com/amirhesham65/hera-lang/token"
+	"github.com/amirhesham65/zzz-lang/token"
 )
 
 // Lexer represents a lexical scanner.
