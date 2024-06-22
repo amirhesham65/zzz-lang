@@ -20,9 +20,9 @@ func TestNextToken(t *testing.T) {
 		5 < 10 > 5;
 
 		fr (5 < 10) {
-			return true;
-		} else {
-			return false;
+			return yea;
+		} lowkey {
+			return nah;
 		}
 
 		10 == 10;
@@ -89,13 +89,13 @@ func TestNextToken(t *testing.T) {
 		{token.RPAREN, ")"},
 		{token.LBRACE, "{"},
 		{token.RETURN, "return"},
-		{token.TRUE, "true"},
+		{token.TRUE, "yea"},
 		{token.SEMICOLON, ";"},
 		{token.RBRACE, "}"},
-		{token.ELSE, "else"},
+		{token.ELSE, "lowkey"},
 		{token.LBRACE, "{"},
 		{token.RETURN, "return"},
-		{token.FALSE, "false"},
+		{token.FALSE, "nah"},
 		{token.SEMICOLON, ";"},
 		{token.RBRACE, "}"},
 		{token.INT, "10"},

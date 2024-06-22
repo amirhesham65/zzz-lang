@@ -61,10 +61,10 @@ var keywords = map[string]TokenType{
 	"fun":    FUNCTION,
 	"lit":    LET,
 	"fr":     IF,
-	"else":   ELSE,
+	"lowkey": ELSE,
 	"return": RETURN,
-	"true":   TRUE,
-	"false":  FALSE,
+	"yea":    TRUE,
+	"nah":    FALSE,
 }
 
 // LookUpIndent returns the TokenType for a given identifier.

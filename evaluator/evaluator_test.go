@@ -41,13 +41,13 @@ func TestEvalBooleanExpressions(t *testing.T) {
 		input    string
 		expected bool
 	}{
-		{"true", true},
-		{"false", false},
-		{"!true", false},
-		{"!false", true},
+		{"yea", true},
+		{"nah", false},
+		{"!yea", false},
+		{"!nah", true},
 		{"!5", false},
-		{"!!true", true},
-		{"!!false", false},
+		{"!!yea", true},
+		{"!!nah", false},
 		{"!!5", true},
 		{"1 < 2", true},
 		{"1 > 2", false},
@@ -57,15 +57,15 @@ func TestEvalBooleanExpressions(t *testing.T) {
 		{"1 != 1", false},
 		{"1 == 2", false},
 		{"1 != 2", true},
-		{"true == true", true},
-		{"false == false", true},
-		{"true == false", false},
-		{"true != false", true},
-		{"false != true", true},
-		{"(1 < 2) == true", true},
-		{"(1 < 2) == false", false},
-		{"(1 > 2) == true", false},
-		{"(1 < 2) == false", false},
+		{"yea == yea", true},
+		{"nah == nah", true},
+		{"yea == nah", false},
+		{"yea != nah", true},
+		{"nah != yea", true},
+		{"(1 < 2) == yea", true},
+		{"(1 < 2) == nah", false},
+		{"(1 > 2) == yea", false},
+		{"(1 < 2) == nah", false},
 	}
 
 	for _, tt := range tests {
@@ -79,13 +79,13 @@ func TestIfElseExpressions(t *testing.T) {
 		input    string
 		expected any
 	}{
-		{"fr (true) { 10 }", 10},
-		{"fr (false) { 10 }", nil},
+		{"fr (yea) { 10 }", 10},
+		{"fr (nah) { 10 }", nil},
 		{"fr (1) { 10 }", 10},
 		{"fr (1 < 2) { 10 }", 10},
 		{"fr (1 > 2) { 10 }", nil},
-		{"fr (1 > 2) { 10 } else { 20 }", 20},
-		{"fr (1 < 2) { 10 } else { 20 }", 10},
+		{"fr (1 > 2) { 10 } lowkey { 20 }", 20},
+		{"fr (1 < 2) { 10 } lowkey { 20 }", 10},
 	}
 
 	for _, tt := range tests {
@@ -184,33 +184,33 @@ func TestErrorHandling(t *testing.T) {
 		expectedMessage string
 	}{
 		{
-			"5 + true;",
+			"5 + yea;",
 			"type mismatch: INTEGER + BOOLEAN",
 		},
 		{
-			"5 + true; 5;",
+			"5 + yea; 5;",
 			"type mismatch: INTEGER + BOOLEAN",
 		},
 		{
-			"-true",
+			"-yea",
 			"unknown operator: -BOOLEAN",
 		},
 		{
-			"true + false;",
+			"yea + nah;",
 			"unknown operator: BOOLEAN + BOOLEAN",
 		}, {
-			"5; true + false; 5",
+			"5; yea + nah; 5",
 			"unknown operator: BOOLEAN + BOOLEAN",
 		},
 		{
-			"fr (10 > 1) { true + false; }",
+			"fr (10 > 1) { yea + nah; }",
 			"unknown operator: BOOLEAN + BOOLEAN",
 		},
 		{
 			`
 			fr (10 > 1) {
 				fr (10 > 1) {
-				  return true + false;
+				  return yea + nah;
 				}
 				return 1; 
 			}
