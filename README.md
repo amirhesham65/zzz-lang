@@ -16,7 +16,9 @@ lit feh = cel * 9 / 5 + 32;
 lit isCool = yea;
 lit isLit = nah;
 lit name = "Amir Hesham";
+spit(name);
 lit count = len(name);
+
 ```
 
 ### Conditionals
@@ -26,9 +28,9 @@ You can use the `fr` keyword to start a conditional block, followed by the condi
 ```zzz
 lit age = 16;
 fr (age > 18) {
-    yea
+    spit("You can drink");
 } lowkey {
-    nah
+    spit("You can't drink");
 };
 ```
 
@@ -52,7 +54,7 @@ lit add = fun(a, b) {
 add(1, 2);
 
 lit greet = fun(name) {
-    "Hello, " + name + "!";
+    spit("Hello, " + name + "!");
 };
 
 lit applyTwice = fun(x, fn) {

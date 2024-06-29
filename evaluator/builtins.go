@@ -1,8 +1,20 @@
 package evaluator
 
-import "github.com/amirhesham65/zzz-lang/object"
+import (
+	"fmt"
+
+	"github.com/amirhesham65/zzz-lang/object"
+)
 
 var builtins = map[string]*object.Builtin{
+	"spit": {
+		Fn: func(args ...object.Object) object.Object {
+			for _, arg := range args {
+				fmt.Println(arg.Inspect())
+			}
+			return nil
+		},
+	},
 	"len": {
 		Fn: func(args ...object.Object) object.Object {
 			if len(args) != 1 {
