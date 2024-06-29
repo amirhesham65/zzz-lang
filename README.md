@@ -16,6 +16,7 @@ lit feh = cel * 9 / 5 + 32;
 lit isCool = yea;
 lit isLit = nah;
 lit name = "Amir Hesham";
+lit count = len(name);
 ```
 
 ### Conditionals
