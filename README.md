@@ -15,6 +15,7 @@ lit cel = 42;
 lit feh = cel * 9 / 5 + 32;
 lit isCool = yea;
 lit isLit = nah;
+lit name = "Amir Hesham";
 ```
 
 ### Conditionals
@@ -48,6 +49,10 @@ lit add = fun(a, b) {
     a + b;
 };
 add(1, 2);
+
+lit greet = fun(name) {
+    "Hello, " + name + "!";
+};
 
 lit applyTwice = fun(x, fn) {
     fn(fn(x));

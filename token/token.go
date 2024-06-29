@@ -54,6 +54,8 @@ const (
 	RETURN   TokenType = "RETURN"   // RETURN represents the 'return' keyword.
 	TRUE     TokenType = "TRUE"     // TRUE represents the 'true' keyword.
 	FALSE    TokenType = "FALSE"    // FALSE represents the 'false' keyword.
+
+	STRING TokenType = "STRING" // STRING represents string literals.
 )
 
 // keywords maps string literals to their corresponding TokenType.
