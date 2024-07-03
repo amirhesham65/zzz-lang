@@ -59,6 +59,8 @@ const (
 
 	LBRACKET TokenType = "[" // LBRACKET represents the left bracket.
 	RBRACKET TokenType = "]" // RBRACKET represents the right bracket.
+
+	COLON TokenType = ":" // COLON represents the colon delimiter. (for hashes)
 )
 
 // keywords maps string literals to their corresponding TokenType.

@@ -90,3 +90,14 @@ lit items = [1, 2, 3, "test", fun(x) { x + 2 }];
 lit newItems = push(items, "this is new");
 spit(len(newItems));
 ```
+
+### Hashes
+
+You can define hashes (dictionaries) using the `lit` keyword, followed by the key-value pairs in curly brackets.
+
+```zzz
+lit person = { "name": "Amir", "age": 25, yea: "cool"};
+lit name = person["name"];
+lit age = person["age"];
+lit isCool = person[yea];
+```
