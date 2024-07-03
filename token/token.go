@@ -56,6 +56,9 @@ const (
 	FALSE    TokenType = "FALSE"    // FALSE represents the 'false' keyword.
 
 	STRING TokenType = "STRING" // STRING represents string literals.
+
+	LBRACKET TokenType = "[" // LBRACKET represents the left bracket.
+	RBRACKET TokenType = "]" // RBRACKET represents the right bracket.
 )
 
 // keywords maps string literals to their corresponding TokenType.
