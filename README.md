@@ -80,3 +80,13 @@ lit add = fun(a) {
 
 add(2)(3);
 ```
+
+### Chains (Arrays)
+
+You can define chains (arrays) using the `lit` keyword, followed by the elements in square brackets.
+
+```zzz
+lit items = [1, 2, 3, "test", fun(x) { x + 2 }];
+lit newItems = push(items, "this is new");
+spit(len(newItems));
+```
